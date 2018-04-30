@@ -18,6 +18,16 @@ class PagesController < ApplicationController
     redirect_to @page
   end
 
+  def edit
+    @page = Page.find(params[:id])
+  end
+
+  def update
+    @page = Page.find(params[:id])
+    @page.update(page_params)
+    redirect_to @page
+  end
+
   private
 
   def page_params
