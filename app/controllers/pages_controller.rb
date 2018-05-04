@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
+  # before_action :set_page, except: [:index, :new, :create]
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
+
   def index
     @pages = Page.all
   end
 
   def show
-    set_page
     # render text: params[:id]
   end
 
@@ -19,17 +21,14 @@ class PagesController < ApplicationController
   end
 
   def edit
-    set_page
   end
 
   def update
-    set_page
     @page.update(page_params)
     redirect_to @page
   end
 
   def destroy
-    set_page
     @page.destroy
     redirect_to pages_path
   end
