@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.find(params[:id])
+    set_page
     # render text: params[:id]
   end
 
@@ -19,17 +19,17 @@ class PagesController < ApplicationController
   end
 
   def edit
-    @page = Page.find(params[:id])
+    set_page
   end
 
   def update
-    @page = Page.find(params[:id])
+    set_page
     @page.update(page_params)
     redirect_to @page
   end
 
   def destroy
-    @page = Page.find(params[:id])
+    set_page
     @page.destroy
     redirect_to pages_path
   end
@@ -38,5 +38,9 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:title, :body, :slug)
+  end
+
+  def set_page
+    @page = Page.find(params[:id])
   end
 end
