@@ -15,7 +15,5 @@
 
 <div>
   <h1>Comments</h1>
-  <% @post.comments.each do |comment| %>
-    <%= render partial: "comments/comment", locals: {comment: comment} %>
-  <% end %>
+  <%= render @post.comments %>
 </div>
