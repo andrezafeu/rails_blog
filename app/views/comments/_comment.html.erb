@@ -1,4 +1,5 @@
 <div>
   <strong><%= comment.name %> says:</strong>
   <%= comment.content %>
+  <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
 </div>
