@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post
+  before_action :set_comment, only: [:edit, :update, :destroy]
 
   def create
     @comment = @post.comments.create(comment_params)
@@ -7,18 +8,25 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = Comment.find(params[:id])
     @comment.update(comment_params)
+    redirect_to @post
+  end
+
+  def destroy
+    @comment.destroy
     redirect_to @post
   end
 
   private
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params
